@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="author" content="Herman Novak" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <title>Random User</title>
-  </head>
-  <body onload="loadUsers()">
-	<button onclick="displayUsers()">Find Matches</button>
-	<ul id="users-list"></ul>
-    <script src="/js/index.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="author" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<title>Random User</title>
+	</head>
+	<body onload="loadUsers()">
+		<div id="gender-wrapper">
+			<div id="match-buttons-wrapper">
+				<h3>I'm looking for a</h3>
+				<button id="looking-for-male-btn" onclick="filterByGender('male')">Male</button>
+				<button id="looking-for-female-btn" onclick="filterByGender('female')">Female</button>
+			</div>
+		</div>
+		<ul id="users-list"></ul>
+	<script src="/js/index.js"></script>
+	</body>
 </html>
