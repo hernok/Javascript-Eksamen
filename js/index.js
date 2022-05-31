@@ -1,4 +1,5 @@
 let usersList = document.getElementById("users-list");
+let interestedList = document.getElementById("interested-list")
 let currentGender = "";
 let interested = [];
 let notInterested = [];
@@ -6,46 +7,20 @@ let male = [];
 let female = [];
 let allUsers = [];
 
-
-function allUsersLog(){
-	console.log(allUsers.results)
-}
-function currentGenderLog(){
-	console.log(currentGender)
-}
-
 function filterGenders(){
 	male = [];
 	female = [];
 	for (let i = 0; i < allUsers.results.length; i++){
 		if (allUsers.results[i].gender === "male"){	
-			//PUSH TIL MALE
-			male.push(allUsers.results[i])
+			male.push(allUsers.results[i]);
 		} else{
-			//PUSH TIL FEMALE
-			female.push(allUsers.results[i])
-		}
-	}
-	console.log(male, female)	
-}
-
-/*
-function filterByGender(genderType){
-	currentGender = genderType
-	let filteredUsers = allUsers.results.filter(function(user){
-		return(
-			user.gender == genderType
-		);
-	});
-	displayUsers(filteredUsers);
-
-	console.log(male)
-	console.log(female)
-}
-*/
+			female.push(allUsers.results[i]);
+		};
+	};
+};
 
 async function loadUsers() {
-	 try {
+	try {
 		const objects = await fetch ("https://randomuser.me/api/?results=50");
 		allUsers = await objects.json();
 	}catch (error) {
@@ -53,56 +28,74 @@ async function loadUsers() {
 	}
 };
 
-
-function displayUsers(genderType) {
-	filterGenders()
+async function displayUsers(genderType) {
 	usersList.innerHTML = "";
-	currentGender = genderType
-	console.log(currentGender)
-		index = 0
-		let user = currentGender[index];
-		let userFirstName = user.name.first;
-		let userLastName = user.name.last;
-		let userAge = user.dob.age;
-		let userPicture = "<img class='image' src='" + user.picture.large + "'/>";
-		userElement = document.createElement("div");
-		userElement.innerHTML =
-			`<li class="user-element">
-					<div class="user-info">
-						<h2 class="name">${userFirstName} ${userLastName}</h2>
-						<h3 class="age">Age: ${userAge}</h2>
-					</div>
-					<div class="user-picture">${userPicture}</div>
-					<div id="interested-buttons">
-						<button id="not-interested-btn" onclick="notInterestedBtnFunc()">Not interested</button> 
-						<button id="interested-btn" onclick="interestedBtnFunc()">interested</button>
-					</div>
-			</li>`;
-		usersList.appendChild(userElement);
-	
+	currentGender = genderType;	
+	index = 0;
+	let user = currentGender[index];
+	let firstName = user.name.first;
+	let lastName = user.name.last;
+	let gender = user.gender;
+	let age = user.dob.age;
+	let picture = "<img class='image' src='" + user.picture.large + "'/>";
+	userElement = document.createElement("div");
+	userElement.innerHTML = 
+		`<li class="user-element">
+				<div class="user-info">
+					<h2 class="name">${firstName} ${lastName}</h2>
+					<h3 class="age">Age: ${age}</h2>
+				</div>
+				${picture}
+				</li>
+				<div id="interested-buttons">
+					<button id="not-interested-btn" onclick="notInterestedBtnFunc(${gender})">Not interested</button> 
+					<button id="interested-btn" onclick="interestedBtnFunc(${gender})">Interested</button>
+				</div>
+		`;
+	usersList.appendChild(userElement);	
 };
-/*
-let interestedBtns = document.getElementById("interested-buttons");
-let notInterestedBtn = document.getElementById("not-interested-btn");
-let interestedBtn = document.getElementById("interested-buttons");
-*/
-
-/*
-function notInterestedBtnFunc(index){
-    currentGender ??? allUsers.results.splice(index, 1);
-	filterByGender(currentGender);
-};
-*/
-
-/*
-function interestedBtnFunc(){
-	allUsers.forEach(function(move, index){
-		allUsers.splice(move, 1);
-	});
-};
-*/
-
 
 function showLocation(){
 
 };
+
+function displayInterested(){
+	interestedList.innerHTML = "";
+ 	for (let i = 0; i < interested.length; i++){
+		let user = interested[i];
+		let firstName = user.name.first;
+		let lastName = user.name.last;
+		let age = user.dob.age;
+		let picture = "<img class='image' src='" + user.picture.large + "'/>";
+		interestedElement = document.createElement("div");
+		interestedElement.innerHTML = 
+			`<li class="interested-element">
+					<div class="interested-info">
+						<h2 class="name">${firstName} ${lastName}</h2>
+						<h3 class="age">Age: ${age}</h2>
+					</div>
+					${picture}
+					</li>
+			`;
+		interestedList.appendChild(interestedElement);
+	};
+		
+};
+
+function notInterestedBtnFunc(index){
+	genderType = currentGender;
+    currentGender.splice(index, 1);
+	displayUsers(currentGender);
+};
+
+function interestedBtnFunc(currentGender){
+	i=0;
+	interested.push(currentGender[i]);
+	currentGender.splice(i, 1);
+	displayUsers(currentGender);
+	displayInterested()
+};
+
+function logInterested(){
+	console.log(interested)
+}

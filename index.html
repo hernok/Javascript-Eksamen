@@ -8,17 +8,23 @@
 		<title>Random User</title>
 	</head>
 	<body onload="loadUsers()">
-		<div id="gender-wrapper">
-			<div id="match-buttons-wrapper">
-				<h3>I'm looking for a</h3>
-				<button onclick="filterGenders()">Split Genders</button>
-				<button onclick="allUsersLog()">allUsers log</button>
-				<button onclick="currentGenderLog()">currentGender Log</button>
-				<button id="looking-for-male-btn" onclick="displayUsers('male')">Male</button>
-				<button id="looking-for-female-btn" onclick="displayUsers('female')">Female</button>
+		<div id="search-buttons-wrapper">
+			<button onclick="displayInterested()">Display Interested</button>
+			<button onclick="logInterested()">log interested</button>
+			<h3>I'm looking for a</h3>
+			<button id="looking-for-male-btn" onclick="filterGenders(); displayUsers(male)">Male</button>
+			<button id="looking-for-female-btn" onclick="filterGenders(); displayUsers(female)">Female</button>
+		</div>
+		<div class="lists-wrapper">
+			<div class="users-box">
+				<ul id="users-list"></ul>
+			</div>
+			<div id="empty-div"></div>
+			<div class="interested-box">
+					<h2>Liked persons</h2>
+				<ul id="interested-list"></ul>
 			</div>
 		</div>
-		<ul id="users-list"></ul>
 	<script src="/js/index.js"></script>
 	</body>
 </html>
