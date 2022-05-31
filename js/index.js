@@ -13,10 +13,13 @@ function filterGenders(){
 	for (let i = 0; i < allUsers.results.length; i++){
 		if (allUsers.results[i].gender === "male"){	
 			male.push(allUsers.results[i]);
+			allUsers.results.splice(i, 0);
 		} else{
 			female.push(allUsers.results[i]);
+			allUsers.results.splice(i, 0);
 		};
 	};
+	console.log(male);
 };
 
 async function loadUsers() {
@@ -73,6 +76,8 @@ function displayInterested(){
 					<div class="interested-info">
 						<h2 class="name">${firstName} ${lastName}</h2>
 						<h3 class="age">Age: ${age}</h2>
+						<button class="remove-interested" onclick="removeInterested()">Remove</button>
+						<button class="location-btn" onclick="showLocation()">Location</button>
 					</div>
 					${picture}
 					</li>
@@ -83,19 +88,27 @@ function displayInterested(){
 };
 
 function notInterestedBtnFunc(index){
+	index = 0;
 	genderType = currentGender;
     currentGender.splice(index, 1);
 	displayUsers(currentGender);
 };
 
 function interestedBtnFunc(currentGender){
-	i=0;
+	i = 0;
 	interested.push(currentGender[i]);
 	currentGender.splice(i, 1);
 	displayUsers(currentGender);
-	displayInterested()
+	displayInterested();
+};
+
+function removeInterested(){ ////////////////////////////////////////////////
+	i = interested[i];
+	interested.splice(i, 1);
+	displayInterested();
+	console.log(interested);
 };
 
 function logInterested(){
-	console.log(interested)
+	console.log(interested);
 }
