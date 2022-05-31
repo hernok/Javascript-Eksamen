@@ -11,8 +11,11 @@
 		<div id="gender-wrapper">
 			<div id="match-buttons-wrapper">
 				<h3>I'm looking for a</h3>
-				<button id="looking-for-male-btn" onclick="filterByGender('male')">Male</button>
-				<button id="looking-for-female-btn" onclick="filterByGender('female')">Female</button>
+				<button onclick="filterGenders()">Split Genders</button>
+				<button onclick="allUsersLog()">allUsers log</button>
+				<button onclick="currentGenderLog()">currentGender Log</button>
+				<button id="looking-for-male-btn" onclick="displayUsers('male')">Male</button>
+				<button id="looking-for-female-btn" onclick="displayUsers('female')">Female</button>
 			</div>
 		</div>
 		<ul id="users-list"></ul>
