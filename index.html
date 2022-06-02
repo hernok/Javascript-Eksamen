@@ -5,12 +5,12 @@
 		<meta name="author" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/styles.css" />
+		<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
 		<title>Random User</title>
 	</head>
 	<body onload="loadUsers()">
 		<div id="search-buttons-wrapper">
-			<button onclick="displayInterested()">Display Interested</button>
-			<button onclick="logInterested()">log interested</button>
 			<h3>I'm looking for a</h3>
 			<button id="looking-for-male-btn" onclick="filterGenders(); displayUsers(male)">Male</button>
 			<button id="looking-for-female-btn" onclick="filterGenders(); displayUsers(female)">Female</button>
@@ -18,6 +18,8 @@
 		<div class="lists-wrapper">
 			<div class="users-box">
 				<ul id="users-list"></ul>
+				<br><br><br>
+				<div id='map'></div>
 			</div>
 			<div id="empty-div"></div>
 			<div class="interested-box">

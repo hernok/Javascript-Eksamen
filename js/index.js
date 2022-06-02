@@ -58,10 +58,6 @@ async function displayUsers(genderType) {
 	usersList.appendChild(userElement);	
 };
 
-function showLocation(){
-
-};
-
 function displayInterested(){
 	interestedList.innerHTML = "";
  	for (let i = 0; i < interested.length; i++){
@@ -72,23 +68,26 @@ function displayInterested(){
 		let picture = "<img class='image' src='" + user.picture.large + "'/>";
 		interestedElement = document.createElement("div");
 		interestedElement.innerHTML = 
-			`<li class="interested-element">
-					<div class="interested-info">
-						<h2 class="name">${firstName} ${lastName}</h2>
-						<h3 class="age">Age: ${age}</h2>
-						<button class="remove-interested" onclick="removeInterested()">Remove</button>
-						<button class="location-btn" onclick="showLocation()">Location</button>
-					</div>
-					${picture}
-					</li>
-			`;
+			"<li class='interested-element'>" +
+			"<div class='interested-info'>" +
+			"<h2 class='name'>" + 
+			firstName + 
+			lastName + 
+			"</h2>" +
+			"<h3 class='age'>Age:" + 
+			age + 
+			"</h3>" +
+			"<button class='remove-interested' onclick='removeInterested(" + 
+			i + 
+			")'>Remove</button>" +
+			"</div>" +
+			picture +
+			"</li>";
 		interestedList.appendChild(interestedElement);
-	};
-		
+	};	
 };
 
 function notInterestedBtnFunc(index){
-	index = 0;
 	genderType = currentGender;
     currentGender.splice(index, 1);
 	displayUsers(currentGender);
@@ -102,13 +101,8 @@ function interestedBtnFunc(currentGender){
 	displayInterested();
 };
 
-function removeInterested(){ ////////////////////////////////////////////////
-	i = interested[i];
+function removeInterested(i){ 
 	interested.splice(i, 1);
 	displayInterested();
 	console.log(interested);
 };
-
-function logInterested(){
-	console.log(interested);
-}
